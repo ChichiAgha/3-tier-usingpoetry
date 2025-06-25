@@ -1,0 +1,26 @@
+FROM node:16.20-alpine
+
+WORKDIR /app
+
+# Install dependencies first (better caching)
+COPY package*.json ./
+
+RUN npm install 
+
+# Copy source and build
+COPY . .
+
+# Set environment variables (optional — override with .env at runtime)
+# ENV VITE_API_URL=http://localhost:8000
+
+# Expose the app port (adjust if needed)
+EXPOSE 5173
+
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+
+
+
+####################################################
+
+
+
